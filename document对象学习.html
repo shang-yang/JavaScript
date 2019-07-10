@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>document对象学习</title>
+    <!--
+        document对象学习：
+            1 document对象的概念
+                浏览器对外提供的支持js的用来操作HTML文档的一个对象，此对象封存了HTML文档的所有信息。
+
+            2 使用document
+                (1)获取HTML元素对象
+                    直接获取方式：
+                        通过id
+                        通过name
+                        通过标签名
+                        通过class
+                    间接获取方式：
+                     父子关系
+                     子父关系
+                     兄弟关系
+
+                (2)操作HTML元素对象的属性
+                    获取元素对象
+
+                    操作元素属性
+                        获取：
+                            元素对象名.属性名    返回当前元素对象属性
+                            元素对象名.getAttribute("属性名");  返回自定义属性的值
+                        修改：
+                            元素对象名.属性名 = 属性值
+                            元素对象名.setAttribute("属性名","属性值");
+                        注意：
+                            尽量不要修改元素的id值和name属性
+                            使用自定义方式获取固有属性内容、value的值获取的是默认值，不能够获取到实时的用户数据。
+
+                (3)操作HTML元素对象的内容和样式
+                    操作元素内容学习：
+                        获取元素对象
+                            获取
+                                元素对象名.innerHTML  返回当前元素对象的所有内容，包括HTML标签
+                                元素对象名.innerText  返回当前元素对象的文本内容，不包括HTML标签
+                            修改
+                                元素对象名.innerHTML="新的内容"  会将原有内容覆盖，并且HTML标签会被解析
+                                    元素对象名.innerHTML = 元素对象名.innerHTML + “新的值”
+
+                                元素对象名.innerText="新的内容"  会将原有内容覆盖，并且HTML标签不会被解析，均会被看作文本显示
+
+                    操作元素样式：
+                        通过style属性
+                            元素对象名.style.样式名=“样式值”
+                            元素对象名.style.样式名=“”
+                            注意：
+                                以上操作，操作的是HTML的style属性声明中的样式，而不是其他css代码域中的样式。
+                        通过className
+                            元素对象名.className="新的值"
+                            元素对象名.className=""
+
+                (4)操作HTML的文档结构
+                        增加节点
+                        删除节点
+                        第一种方式：使用innerHTML
+                            div.innerHTML=div.innerHTML+"内容"  // 增加节点
+                            div.innerHTML=""                   // 删除所有的节点
+                            父节点.removeChild(子节点对象)       // 删除指定的节点
+                        第二种方式：
+                            获取元素对象
+                            元素对象名.appendChild(obj);
+
+                (5)document操作Form元素
+
+                (6)document操作表格
+
+                (7)document对象实现form表单校验
+    -->
+    <script type="text/javascript">
+        // document获取元素对象
+        // 直接方式
+            function testGetEleById() {
+                let inp = window.document.getElementById("uname");
+                alert(inp);
+            }
+            function testGetEleByName() {
+               let inp = window.document.getElementsByName("fav");
+               alert(inp);
+            }
+            function testGetEleByTagName() {
+                let inps = document.getElementsByTagName("input");
+                alert(inps);
+            }
+            function testGetEleByClass() {
+                let inps = document.getElementsByClassName("a")
+                alert(inps);
+            }
+
+
+        // 间接方式
+            function testParent() {
+                // 获取父级元素对象
+                let showdiv = document.getElementById("showdiv");
+                // 获取所有的子元素对象数组
+                let childs = showdiv.childNodes;
+                alert(childs.length);
+            }
+            function testChild() {
+                let inp = document.getElementById("inp");
+                let div = inp.parentNode;
+                alert(div);
+            }
+            function testBrother() {
+                let inp = document.getElementById("inp");
+                let preEle = inp.previousSibling;
+                let nextEle = inp.nextSibling;
+                alert(preEle.value + ":::" + nextEle);
+            }
+
+    </script>
+
+
+</head>
+<body>
+     <h3>document对象的概念和获取元素对象学习</h3>
+     <hr>
+     用户名：<input type="text" name="uname" id="uname"><br><br>
+     爱好：<input type="checkbox" name="fav" value="唱歌"/>唱歌
+          <input type="checkbox" name="fav" value="跳舞"/>跳舞
+          <input type="checkbox" name="fav" value="睡觉"/>睡觉
+          <input type="checkbox" name="fav" value="游戏"/>游戏
+     <hr>
+     <!--直接获取-->
+     <p>直接获取</p>
+     <input type="button" value="通过id获取" onclick="testGetEleById();">
+     <input type="button" value="通过name获取" onclick="testGetEleByName();">
+     <input type="button" value="通过标签获取" onclick="testGetEleByTagName();">
+     <input type="button" value="通过类名获取" onclick="testGetEleByClass();">
+     <hr>
+     <!--间接获取-->
+     <p>间接获取</p>
+     <div id="showdiv">
+         <input type="text" value="">
+         <input type="text" value="">
+         <input type="text" id="inp">
+         <input type="text">
+         <input type="text">
+         <input type="text">
+
+     </div>
+     <input type="button" value="获取子元素对象" onclick="testParent()">
+     <input type="button" value="获取父元素对象" onclick="testChild()">
+     <input type="button" value="获取同级元素对象" onclick="testBrother()">
+</body>
+</html>

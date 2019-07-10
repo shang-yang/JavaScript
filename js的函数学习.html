@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--
+        js的函数学习：
+            功能代码块的封装，减少代码冗余
+            1 函数声明
+            2 函数的参数
+            3 函数的返回值
+        注意：
+            js的代码声明区域和执行区域是一起的，都是在js代码的代码域中
+    -->
+    <script type="text/javascript">
+        //Setup
+        var contacts = [
+            {
+                "firstName": "Akira",
+                "lastName": "Laine",
+                "number": "0543236543",
+                "likes": ["Pizza", "Coding", "Brownie Points"]
+            },
+            {
+                "firstName": "Harry",
+                "lastName": "Potter",
+                "number": "0994372684",
+                "likes": ["Hogwarts", "Magic", "Hagrid"]
+            },
+            {
+                "firstName": "Sherlock",
+                "lastName": "Holmes",
+                "number": "0487345643",
+                "likes": ["Intriguing Cases", "Violin"]
+            },
+            {
+                "firstName": "Kristian",
+                "lastName": "Vos",
+                "number": "unknown",
+                "likes": ["Javascript", "Gaming", "Foxes"]
+            }
+        ];
+
+
+
+        function lookUpProfile(firstName, prop){
+        // Only change code below this line
+            for(var i = 0; i < 4; i++) {
+                if(contacts[i].firstName !== null) {
+                    console.log( contacts[i].prop === null ? "No such property" : contacts[i].prop) ;
+                }
+            }
+        // Only change code above this line
+        }
+
+        // Change these values to test your function
+        lookUpProfile("Akira", "likes");
+
+
+    </script>
+
+
+
+</head>
+<body>
+
+</body>
+</html>

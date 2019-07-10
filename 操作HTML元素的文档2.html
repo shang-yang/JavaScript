@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js操作元素的文档结构2</title>
+    <!--
+        js操作HTML文档结构：
+            增加节点
+            删除节点
+            第一种方式：使用innerHTML
+                div.innerHTML=div.innerHTML+"内容"  // 增加节点
+                div.innerHTML=""                   // 删除所有的节点
+                父节点.removeChild(子节点对象)       // 删除指定的节点
+            第二种方式：
+                获取元素对象
+                元素对象名.appendChild(obj);
+
+    -->
+    <script type="text/javascript">
+        function testOper2() {
+            // 获取元素对象
+            let showdiv = document.getElementById("showdiv");
+            // 创建input元素对象
+            let inp = document.createElement("input");
+            inp.type="file";
+            inp.value="";
+            // 创建按钮元素对象
+            let btn = document.createElement("input");
+            btn.type="button";
+            btn.value="删除";
+            btn.onclick=function(){
+                showdiv.removeChild(inp);
+                showdiv.removeChild(btn);
+                showdiv.removeChild(br);
+            }
+            // 创建换行符
+            let br = document.createElement("br");
+            // 将创建的元素对象存放到div中
+            showdiv.appendChild(inp);
+            showdiv.appendChild(btn);
+            showdiv.appendChild(br);
+
+        }
+    </script>
+</head>
+<body>
+    <h3>js操作文档结构</h3>
+    <div id="showdiv">
+    <!--<input type="file" name="" id="" value="" />-->
+    </div>
+    <hr>
+
+    <input type="button" value="继续上传" onclick="testOper2();">
+
+
+</body>
+</html>

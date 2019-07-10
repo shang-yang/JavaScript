@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算器</title>
+    <style type="text/css">
+        #showdiv {
+            margin: auto;
+            margin-top:50px;
+            border:solid 1px;
+            width: 300px;
+            height: 400px;
+            text-align: center;
+            background-color: darksalmon;
+            border-radius: 30px;
+        }
+        input[type=text]{
+            margin-top: 20px;
+            width: 250px;
+            height:50px;
+            font-size: 20px;
+        }
+        input[type=button] {
+            width:60px;
+            height:60px;
+            font-size: 30px;
+            
+        }
+    </style>
+    <script type="text/javascript">
+         function test(btn) {
+             var num = btn.value;
+             switch(num) {
+                 case "=":
+                     let a = eval(document.getElementById("inp").value);
+                     document.getElementById("inp").value = a;
+                     break;
+                 case "c":
+                     document.getElementById("inp").value = null;
+                     break;
+                 default:
+                     document.getElementById("inp").value = document.getElementById("inp").value+num;
+             }
+         }
+    </script>
+</head>
+<body>
+     <div id="showdiv">
+         <input type="text" id="inp" value="" readonly="true"/><br><br>
+         <input type="button" value="7" onclick="test(this)"/>
+         <input type="button" value="8" onclick="test(this)"/>
+         <input type="button" value="9" onclick="test(this)"/>
+         <input type="button" value="+" onclick="test(this)"/><br><br>
+         <input type="button" value="4" onclick="test(this)"/>
+         <input type="button" value="5" onclick="test(this)"/>
+         <input type="button" value="6" onclick="test(this)"/>
+         <input type="button" value="/" onclick="test(this)"/><br><br>
+         <input type="button" value="1" onclick="test(this)"/>
+         <input type="button" value="2" onclick="test(this)"/>
+         <input type="button" value="3" onclick="test(this)"/>
+         <input type="button" value="-" onclick="test(this)"/><br><br>
+         <input type="button" value="*" onclick="test(this)"/>
+         <input type="button" value="0" onclick="test(this)"/>
+         <input type="button" value="c" onclick="test(this)"/>
+         <input type="button" value="=" onclick="test(this)"/>
+     </div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作表单元素</title>
+    <!--
+        js操作多选框、单选框
+            被选中状态下在js中checked属性值为true，未选中状态为false。
+
+        js操作下拉框：
+            被选择的option对象在js中selected属性值为true,为选中为false
+    -->
+    <script type="text/javascript">
+        function testCheckBox() {
+            // 获取所有的多选元素对象数组
+            let favs = document.getElementsByName("fav");
+            // 遍历数组
+            for (let i = 0; i < favs.length; i++) {
+                if (favs[i].checked){
+                    alert(favs[i].value);
+                }
+            }
+        }
+        function testCheckBox2() {
+            let favs = document.getElementsByName("fav");
+            for(let i = 0; i < favs.length; i++){
+                favs[i].checked = true;
+            }
+        }
+        function testCheckBox3() {
+            let favs = document.getElementsByName("fav");
+            for(let i = 0; i <favs.length; i++) {
+                favs[i].checked= !favs[i].checked;
+            }
+        }
+
+
+
+        function testsel() {
+            // 获取下拉框对象
+            let sel = document.getElementById("address");
+            alert(sel.value);
+
+            // 获取option对象集合
+            let os = sel.options;
+            for(let i = 0; i < os.length; i ++) {
+                if(os[i].selected){
+                    alert(os[i].value + ":" + os[i].text);
+                }
+            }
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+    <h3>操作表单元素</h3>
+    <hr>
+    <b>操作多选框</b><br><br>
+    <input type="checkbox" name="fav" id="fav1" value="1">浮夸
+    <input type="checkbox" name="fav" id="fav2" value="2">无赖
+    <input type="checkbox" name="fav" id="fav3" value="3">海阔天空
+    <input type="checkbox" name="fav" id="fav4" value="4">不说
+    <input type="checkbox" name="fav" id="fav5" value="5">满座
+    <input type="checkbox" name="fav" id="fav6" value="6">李白
+    <br><br>
+    <input type="button" name="" id="btn1" value="播放" onclick="testCheckBox()">
+    <input type="button" name="" id="btn2" value="全选" onclick="testCheckBox2()">
+    <input type="button" name="" id="btn3" value="反选" onclick="testCheckBox3()">
+    <hr>
+    <select name="" id="address" onchange="testsel()">
+        <option value="0">--请选择--</option>
+        <option value="北京">北京</option>
+        <option value="上海">上海</option>
+        <option value="杭州">杭州</option>
+        <option value="深圳">深圳</option>
+    </select>
+
+
+
+</body>
+</html>

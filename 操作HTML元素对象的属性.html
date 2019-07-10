@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作元素对象的属性</title>
+    <!--
+        js操作HTML元素属性
+            获取元素对象
+
+            操作元素属性
+                获取：
+                    元素对象名.属性名    返回当前元素对象属性
+                    元素对象名.getAttribute("属性名");  返回自定义属性的值
+                修改：
+                    元素对象名.属性名 = 属性值
+                    元素对象名.setAttribute("属性名","属性值");
+                注意：
+                    尽量不要修改元素的id值和name属性
+                    使用自定义方式获取固有属性内容、value的值获取的是默认值，不能够获取到实时的用户数据。
+    -->
+    <script type="text/javascript">
+        // 声明函数---固有属性
+        // 获取属性值
+        function testField1() {
+            // 获取元素对象
+            let inp = document.getElementById("uname");
+            // 获取元素属性值
+            alert(inp.type+":"+inp.name+":"+inp.id+":"+inp.value);
+        }
+        // 修改元素属性值
+        function testField2() {
+            // 获取元素对象
+            let inp = document.getElementById("uname");
+            // 修改元素属性
+            inp.value="haha";
+            inp.type="button";
+            alert(inp.type+":"+inp.name+":"+inp.id+":"+inp.value);
+        }
+
+        // 声明函数---自定义属性
+        // 获取
+        function testOwnField() {
+            // 获取元素对象
+            let inp = document.getElementById("uname");
+            // 获取自定义属性的值
+            alert(inp.getAttribute("abc"));
+        }
+       // 修改
+        function testOwnField2() {
+            // 获取元素对象
+            let inp = document.getElementById("uname");
+            // 修改自定义属性的值
+            inp.setAttribute("abc","呵呵");
+        }
+
+        // 使用自定义方式操作固有属性
+        function testOper() {
+            let inp = document.getElementById("uname");
+            alert(inp.getAttribute("type"));
+        }
+    </script>
+
+</head>
+<body>
+   <h3>js操作HTML的元素属性</h3>
+   <hr>
+   用户名：<input type="text" name="uname" id="uname" value="" abc="shang"/>
+   <br><br><input type="button" value="测试获取元素属性" onclick="testField1();">
+   <input type="button" value="测试修改元素属性" onclick="testField2();">
+   <br><br><input type="button" value="获取自定义属性" onclick="testOwnField();">
+   <input type="button" value="修改自定义属性" onclick="testOwnField2();">
+   <br><br><input type="button" value="使用自定义方式操作固有属性" onclick="testOper();">
+</body>
+</html>

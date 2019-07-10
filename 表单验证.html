@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <script type="text/javascript">
+        // 创建验证码
+        function createCode() {
+            // 创建随即四位数字
+            let code = Math.floor(Math.random()*9000 + 1000);
+            // 获取元素对象
+            let span = document.getElementById("codeS");
+            // 讲数据存放到span
+            span.innerText=code;
+        }
+
+        // 用户名
+        function checkUname() {
+            // 获取用户的用户名信息
+            let uname = document.getElementById("uname").value;
+            //alert(uname);
+            // 创建检验规则
+            let reg = /^[\u4e00-\u9fa5]{2,4}$/;
+            // 获取span对象
+            let span = document.getElementById("unameS");
+            // 开始检验
+            if(uname=="" || uname==null) {
+                // 输出校验结果
+                span.innerText="用户名不能为空";
+                span.style.color="red";
+                return false;
+            }else if(reg.test(uname)) {
+                // 输出校验结果
+                span.innerText="用户名OK";
+                span.style.color="green";
+                return true;
+            } else {
+                // 输出校验结果
+                span.innerText="用户名不符合命名规则";
+                span.style.color="red";
+                return false;
+            }
+        }
+
+        // 密码
+        function checkPwd() {
+            // 获取密码
+            let pwd = document.getElementById("pwd").value;
+            // 创建校验规则
+            let reg = /^[a-z]\w{5,7}$/;
+            // 获取span对象
+            let span = document.getElementById("pwdS");
+            // 开始校验
+            if (pwd=="" || pwd == null) {
+                 // 输出校验结果
+                span.innerHTML = "密码不能为空";
+                span.style.color="red";
+                return false;
+            } else if (reg.test(pwd)) {
+                // 输出校验结果
+                span.innerHTML="密码ok";
+                span.style.color="green";
+                return true;
+            }else {
+                // 输出校验结果
+                span.innerHTML="密码格式不正确";
+                span.style.color="red";
+                return false;
+            }
+            checkPwd2();    
+        }
+
+        // 确认密码
+        function checkPwd2() {
+            // 获取第一次密码
+            let pwd = document.getElementById("pwd").value;
+            // 获取确认密码
+            let pwd2 = document.getElementById("pwd1").value;
+            // 获取span对象
+            let span = document.getElementById("pwd2S");
+            // 比较两次密码是否相同
+            if (pwd2=="" || pwd2==null) {
+                span.innerHTML="确认密码不能为空";
+                span.style.color="red";
+                return false;
+            } else if (pwd == pwd2) {
+                span.innerHTML="确认密码OK";
+                span.style.color="green";
+                return true;
+            } else {
+                span.innerHTML="两次密码不一致";
+                span.style.color="red";
+                return false;
+            }
+        }
+        // 手机号
+        function checkPhone() {
+            // 获取用户数据
+            let inps = document.getElementById("phone");
+            let inp = inps.value;
+            let str = inps.alt;
+            // 创建校验规则
+            let reg = /^1[3,4,5,7,8]\d{9}$/;
+            // 获取span对象
+            let span = document.getElementById("phoneS");
+            // 开始校验
+            if (inp == "" || inp == null) {
+                span.innerHTML=str+"不能为空";
+                span.style.color="red";
+                return false;
+            } else if (reg.test(inp)) {
+                span.innerHTML=str+"OK";
+                span.style.color="green";
+                return true;
+            } else {
+                span.innerHTML=str+"不符合规则";
+                span.style.color="red";
+                return false;
+            }
+            // 输出校验结果
+        }
+
+        // 校验邮箱
+        function checkMail() {
+            checkField("email",/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/);
+        }
+
+        // 校验下拉框
+        function checkAddress() {
+            // 获取用户选择的数据
+            let sel = document.getElementById("address").value;
+            let span = document.getElementById("addressS");
+            if (sel!=0) {
+                span.innerHTML="籍贯选择成功";
+                span.style.color="green";
+                return true;
+            } else {
+                span.innerHTML="请选择籍贯";
+                span.style.color="red";
+                return false;
+            }
+        }
+
+        // 校验多选框
+       function checkFav() {
+           // 获取所有爱好
+           let favs = document.getElementsByName("like");
+           let span = document.getElementById("likeS");
+           // 遍历
+           for (let i = 0; i < favs.length; i ++) {
+               if (favs[i].checked) {
+                   span.innerHTML="爱好选择成功";
+                   span.style.color="green";
+                   return true;
+               }
+           }
+           span.innerHTML="请选择一项爱好";
+           span.style.color="red";
+           return false;
+       }
+
+       function checkAgree() {
+           // 获取提交按钮的disabled属性
+           return document.getElementById("sub").disabled=!document.getElementById("agree").checked;
+       }
+
+
+
+        // ********************************************************
+        // 封装校验
+        function checkField(id,reg) {
+            // 获取用户数据
+            let inps = document.getElementById(id);
+            let inp = inps.value;
+            let str = inps.alt;
+            // 创建校验规则
+
+            // 获取span对象
+            let span = document.getElementById(id+"S");
+            // 开始校验
+            if (inp == "" || inp == null) {
+               span.innerHTML=str+"不能为空";
+                span.style.color="red";
+                return false;
+            } else if (reg.test(inp)) {
+                span.innerHTML=str+"OK";
+                span.style.color="green";
+                return true;
+            } else {
+                span.innerHTML=str+"不符合规则";
+                span.style.color="red";
+                return false;
+            }
+            // 输出校验结果
+        }
+
+
+        // 提交判断
+        function checkSub() {
+            checkUname();
+            checkPwd();
+            checkPwd2();
+            checkPhone();
+            checkMail();
+            checkAddress();
+            checkFav();
+            return checkUname() && checkPwd() && checkPwd2() && checkPhone() && checkMail() && checkAddress() && checkFav();
+        }
+    </script>
+</head>
+<body onload="createCode();">
+<div  align="center">
+    <form action="" onsubmit="return checkSub()">
+        用户名：<input type="text" name="uname" id="uname" value="" onblur="checkUname()"><span id="unameS"></span><br><br>
+        密码：<input type="password" name="pwd" id="pwd" value="" onblur="checkPwd()"><span id="pwdS"></span><br><br>
+        确认密码：<input type="password" name="pwd1" id="pwd1" onblur="checkPwd2()"><span id="pwd2S"></span><br><br>
+        手机号：<input type="text" name="phone" id="phone" alt="手机号" onblur="checkPhone()"><span id="phoneS"></span><br><br><br><br>
+        邮箱：<input type="text" name="email" id="email" alt="邮箱" onblur="checkMail()"><span id="emailS"></span><br><br>
+        性别：<input type="radio" name="sex" value="男">男
+        <input type="radio" name="sex" value="女">女<br><br>
+        籍贯：<select name="address" id="address" onchange="checkAddress()">
+                <option value="0">请选择籍贯</option>
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="深圳">深圳</option>
+            </select><span id="addressS"></span><br><br>
+        爱好：<input type="checkbox" name="like" value="1" onclick="checkFav()"> 1
+             <input type="checkbox" name="like" value="2" onclick="checkFav()"> 2
+             <input type="checkbox" name="like" value="3" onclick="checkFav()"> 3<br>
+             <input type="checkbox" name="like" value="4" onclick="checkFav()"> 4
+             <input type="checkbox" name="like" value="5" onclick="checkFav()">  5
+             <input type="checkbox" name="like" value="6" onclick="checkFav()">  6<br>
+        <span id="likeS"></span>
+        <br>
+        个人介绍：<textarea name="haha">
+
+                </textarea><br><br>
+        验证码：
+        <input type="text" name="code" id="code"/><br>
+        <span id="codeS" onclick="createCode()" style="font-size: 100px"></span>
+        <br><br>
+        <input type="checkbox" name="" id="agree" value="" onclick="checkAgree()"/>是否同意
+        <br><br>
+        <input type="submit" id="sub" value="提交" disabled>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟淘宝网</title>
+    <script>
+        // 创建函数进行照片联动和样式设置
+        function operInImg(img,src) {
+            // 设置图片样式
+            img.style.border="1px solid";
+            let big = document.getElementById("big");
+            big.src="img/" + src;
+        }
+        function operOutImg(img) {
+            img.style.border="";
+        }
+    </script>
+    <style>
+        #showdiv{
+            width: 400px;
+            height: 500px;
+            border:1px solid;
+            border-radius: 20px;
+        }
+        #ta{
+            margin: auto;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="showdiv">
+        <table width="380px" id="ta">
+            <tr height="380px">
+                <td colspan="5"><img src="img/pig.jpeg" alt="" width="380px" id="big"></td>
+            </tr>
+            <tr height="74px">
+                <td><img src="img/pig.jpeg" alt="" width="70px" onmousemove="operInImg(this,'pig.jpeg')" onmouseout="operOutImg(this)"></td>
+                <td><img src="img/pig.jpeg" alt="" width="70px" onmousemove="operInImg(this,'pig.jpeg')" onmouseout="operOutImg(this)"></td>
+                <td><img src="img/pig.jpeg" alt="" width="70px" onmousemove="operInImg(this,'piag.jpeg')" onmouseout="operOutImg(this)"></td>
+                <td><img src="img/pig.jpeg" alt="" width="70px" onmousemove="operInImg(this,'pig.jpeg')" onmouseout="operOutImg(this)"></td>
+                <td><img src="img/pig.jpeg" alt="" width="70px" onmousemove="operInImg(this,'pig.jpeg')" onmouseout="operOutImg(this)"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

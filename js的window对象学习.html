@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>window对象学习</title>
+    <!--
+        BOM浏览器对象模型：是规范浏览器对js语言的支持（js调用浏览器本身的功能）。
+        BOM的具体实现是window对象
+
+        window对象使用学习：
+            1 window对象不用new，直接进行使用即可。类似Math的使用方式，window关键字可以省略不写。
+            2 框体方法
+                alert   :警告框  提示一个警告信息，没有返回值
+                confirm :确认框  提示用户选择一项操作（确认/取消）
+                              点击确认 返回true
+                              点击取消 返回false
+                prompt  :提示框  提示用户某个信息的录入或者说收集
+                              点击确定，返回当前录入的数据，默认返回空字符串
+                              点击取消，返回null
+            3 定时和间隔执行方法
+                setTimeout:  指定的时间执行后执行指定的函数
+                                参数1 函数对象
+                                参数2 时间 单位毫秒
+                                返回值 当前定时器的id
+                setInterval: 每间隔指定的时间执行指定的函数
+                                参数1 函数对象
+                                参数2 时间 单位毫秒
+                                返回值 当前间隔器的id
+
+
+                clearTimeout:    用来停止指定的定时器
+                                    参数 定时器的id
+                clearInterval：  用来停止指定的间隔器
+                                    参数 间隔器的id
+
+            4 子窗口方法
+                window.open('子页面资源（相对路径）','打开方式','配置');
+                注意： 
+                    关闭子页面的方法 window.close() 只能关闭open方法打开的子页面
+            5 子页面调用父页面的函数
+                window.opener.父页面函数名
+
+        js的window对象的常用属性
+            地址栏属性       location
+                window.location.href="新的资源路径"
+                window.location.reload() 重新加载页面资源（刷新）
+            历史记录属性      history
+                window.history.forward()    页面资源前进，历史记录前进
+                window.history.back()       页面资源后退，历史记录后退
+                window.history.go(index)    跳转到指定的历史记录资源
+                    注意 window.history.go(0)相当于刷新
+            屏幕属性
+                window.screen.width;
+                window.screen.height;
+            浏览器配置属性
+            主体面板属性（document）
+
+     -->                                
+    <script type="text/javascript">
+       // 框体方法学习：
+       //  警告框
+        function testAlert() {
+            window.alert("警告框！");
+        }
+        // 确认框
+        function testConfirm() {
+            let a = window.confirm("你确定么！");
+            alert(a);
+        }
+        // 提示框
+        function testPrompt() {
+            let a = window.prompt("提示框");
+            alert(a);
+        }
+
+        /*-------------------------------------------------------------*/
+
+       var idt;
+       var idI;
+       // 定时执行
+        function testSetTimeout() {
+            idt = window.setTimeout(function(){
+                alert("我是定时执行");
+            },3000);
+        }
+        // 间隔执行
+        function testSetInterval() {
+            idI = window.setInterval(function(){
+                alert("我是间隔执行");
+            },2000)
+        }
+        // 停止当前的定时方法
+        function testClearTimeout() {
+            window.clearTimeout(idt);
+        }
+        // 停止当前的间隔方法
+        function testClearInterval() {
+            window.clearInterval(idI);
+        }
+
+        /*----------------------------------------------*/
+
+       // 字页面方法
+        function testOpen() {
+            window.open('son.html','newwindow','height=400,width=400,top=100px,left=200px,toolbar=no,menubar=no,scrollbars=no,resizable=no,location=no,status=no');
+        }
+        // 子页面调用父页面的函数
+        function testFather() {
+            window.alert("我是父页面的方法");
+        }
+
+
+        /*---------------------------------------------------------------------*/
+        // 地址栏属性--location
+        function testLocation() {
+            window.location.href='http://www.baidu.com';
+        }
+       function testLocation2() {
+           window.location.reload();
+       }
+
+        // 历史记录属性
+        function testHistory() {
+            window.history.forward();
+        }
+
+        // 屏幕属性
+        function testScreen() {
+            let x = window.screen.width;
+            let y = window.screen.height;
+            alert(x+":"+y);
+        }
+
+
+        // 浏览器配置属性
+        function testNa() {
+            alert(window.navigator.userAgent);
+        }
+
+    </script>
+
+
+
+</head>
+<body>
+    <input type="button" value="测试警告框" onclick="testAlert();"/>
+    <input type="button" value="测试确认框" onclick="testConfirm();"/>
+    <input type="button" value="测试提示框" onclick="testPrompt();"/>
+    <hr>
+    <input type="button" value="定时执行" onclick="testSetTimeout();">
+    <input type="button" value="间隔执行" onclick="testSetInterval();"><br><br>
+    <input type="button" value="停止定时" onclick="testClearTimeout();">
+    <input type="button" value="停止间隔" onclick="testClearInterval();">
+    <hr>
+    <input type="button" value="子页面" onclick="testOpen();">
+    <hr>
+    <input type="button" value="跳转" onclick="testLocation();">
+    <input type="button" value="刷新" onclick="testLocation2();"><br><br>
+    <input type="button" value="前进" onclick="testHistory();"><br><br>
+    <input type="button" value="屏幕" onclick="testScreen();"><br><br>
+    <input type="button" value="浏览器配置" onclick="testNa();">
+
+</body>
+</html>
